@@ -4,7 +4,7 @@ def send_email_token(email,token):
     try:
         subject = "Verify your email"
         # message = f"Hi click on the link to verify your email http://infin8loyalty.iiitb.net/verify/{token}/{email}"
-        message = f"Hi click on the link to verify your email http://127.0.0.1:8000/verify/{token}/{email}"
+        message = f"Hi click on the link to verify your email http://52.23.205.173:8000/verify/{token}/{email}"
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [email,]
         send_mail(subject, message, email_from, recipient_list)
