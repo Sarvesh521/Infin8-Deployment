@@ -46,8 +46,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Changing to deployment directory..."
-            cd ~/Infin8-Deployment || { echo "Deployment directory not found"; exit 1; }
-            cd ~/Infin8 || { echo "Infin8 directory not found"; exit 1; }
+            cd Infin8-Deployment || { echo "Deployment directory not found"; exit 1; }
+            cd Infin8 || { echo "Infin8 directory not found"; exit 1; }
             echo "Pulling latest code..."
             git pull origin main
             echo "Stopping existing containers..."
