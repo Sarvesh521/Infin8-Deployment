@@ -47,6 +47,10 @@ jobs:
           script: |
             echo "Changing to deployment directory..."
             cd Infin8-Deployment || { echo "Deployment directory not found"; exit 1; }
+            echo "Storing .env file from secrets..."
+            cat <<EOF > .env
+            ${{ secrets.ENV_FILE }}
+            EOF
             echo "Pulling latest code..."
             git pull origin main
             echo "Stopping existing containers..."
