@@ -21,7 +21,7 @@ services:
       retries: 10
 
   backend:
-    image: sarvesh717/infin8:v8
+    image: sarvesh717/infin8:v9
     container_name: infin8_backend
     command: >
       sh -c "python3 manage.py makemigrations --noinput &&
