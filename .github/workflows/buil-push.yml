@@ -1,0 +1,57 @@
+name: Infin8 CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Build and push Docker image
+        id: build_push
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: sarvesh717/infin8
+          tags: v7
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "sarvesh717/infin8:v7"
+          severity: "CRITICAL,HIGH,MEDIUM"
+
+  deploy-container:
+    needs: build-image
+    runs-on: ubuntu-latest
+    if: ${{ success() }}
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "Changing to deployment directory..."
+            cd ~/Infin8-Deployment || { echo "Deployment directory not found"; exit 1; }
+            echo "Stopping existing containers..."
+            sudo docker-compose down
+            echo "Pulling latest images..."
+            sudo docker-compose pull
+            echo "Starting containers..."
+            sudo docker-compose up -d
+            echo "Deployment complete. Listing running containers..."
+            sudo docker ps -a
