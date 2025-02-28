@@ -21,7 +21,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: sarvesh717/infin8
-          tags: v7
+          tags: v8
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -30,7 +30,7 @@ jobs:
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "sarvesh717/infin8:v7"
+          image-ref: "sarvesh717/infin8:v8"
           severity: "CRITICAL,HIGH,MEDIUM"
 
   deploy-container:

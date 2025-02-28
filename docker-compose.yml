@@ -3,11 +3,11 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: project_name_mariadb
+    container_name: infin8_mariadb
     restart: always
     volumes:
-      # - data:/var/lib/mysql
-      - ./mysql-data:/var/lib/mysql
+      - data:/var/lib/mysql
+      # - ./Infin8/mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -21,8 +21,8 @@ services:
       retries: 10
 
   backend:
-    image: sarvesh717/infin8:v7
-    container_name: project_name_backend
+    image: sarvesh717/infin8:v8
+    container_name: infin8_backend
     command: >
       sh -c "python3 manage.py makemigrations --noinput &&
             python3 manage.py migrate --noinput &&

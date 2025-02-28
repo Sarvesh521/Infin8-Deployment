@@ -17,12 +17,14 @@ WORKDIR /app
 COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
-# Copy the project code into the container
+# Copy the entire project code into the container
 COPY . /app/
+
+# Change working directory to the Infin8 folder
+WORKDIR /app/Infin8
 
 # Expose the port the app runs on
 EXPOSE 80
-
 
 # Run the Django development server binding to all interfaces
 CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
