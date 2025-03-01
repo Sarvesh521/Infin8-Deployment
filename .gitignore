@@ -170,3 +170,7 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 mysql-data
+
+notes.txt
+secret-mail.yml
+secret-mysql-credentials.yml

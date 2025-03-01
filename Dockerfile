@@ -24,7 +24,7 @@ COPY . /app/
 WORKDIR /app/Infin8
 
 # Expose the port the app runs on
-EXPOSE 80
+EXPOSE 8000
 
 # Run the Django development server binding to all interfaces
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-endpoint-config
+data:
+  MYSQL_HOST: "mysql-service"   # Internal service name for MySQL
+  MYSQL_PORT: "3306"
