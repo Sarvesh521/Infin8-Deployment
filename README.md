@@ -40,7 +40,6 @@ Open your web browser and navigate to `localhost:8000` to access the login page.
 Go to `https://infin8loyalty.iiitb.net/` to checkout the site!! <br> Edit : The site is currently down.
 
 ## Team Members
-1. Sarvesh Kumar . A : Back-end
+1. Sarvesh Kumar . A : Back-end + Deployment 
 2. Dhruv Kothari : Back-end
 3. P.V.S Sukeerithi : Front-end
-4. Rohit Shah : Deployment
