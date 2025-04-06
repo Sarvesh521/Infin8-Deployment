@@ -25,13 +25,74 @@ https://github.com/Sarvesh521/Infin8-2024/assets/122382587/bc0189c4-0251-47df-a8
 
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/Sarvesh521/Sands-Of-Time.git`
-2. Navigate into the project directory: `cd Infin8`
+1. Clone the repository: `git clone https://github.com/Sarvesh521/Infin8-Deployment.git`
+2. Navigate into the project directory: `cd Infin8-Deployment`
 3. Install the required packages: `pip install -r requirements.txt`
 4. Make necessary migrations: <br>`python manage.py make migrations`<br> `python manage.py migrate`
 5. Set app-password and the database: go to `settings.py` and set the fields required to establish a connection between your local database and the website, also set the email-id along with the corresponding app-password, to enable verification via email.
 6. Run the server: `python manage.py runserver`
 
+## Installation Instructions
+
+This file contains only the installation and setup steps using Docker, Docker Compose, and Helm Charts.
+
+---
+
+### Prerequisites
+
+- Git must be installed.
+- Python and pip must be installed.
+- Docker and Docker Compose must be installed.
+- Helm must be installed.
+- (For Helm) A Kubernetes cluster (e.g., Minikube) is available.
+
+---
+
+### 1. Clone and Setup for Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/Sarvesh521/Infin8-Deployment.git
+
+# Navigate into the project directory
+cd Infin8-Deployment
+
+# Install the required packages
+pip install -r [requirements.txt](http://_vscodecontentref_/0)
+
+# Make necessary migrations
+python manage.py make migrations
+python manage.py migrate
+
+# Set your app-password, database configuration, and email credentials in settings.py before running.
+
+# Run the server locally
+python manage.py runserver
+```
+
+### 2. Docker Setup
+```bash
+#Build the Docker Image
+docker build -t sarvesh717/infin8:v10 .
+
+# Run the Docker Container
+docker run -d -p 8000:8000 --name infin8 sarvesh717/infin8:v10
+```
+
+### 3. Docker Compose Setup
+```bash
+#Starting the containers
+docker-compose up -d
+```
+
+### 4.Helm Chart Setup (Kubernetes)
+```bash
+# This command installs the release named myapp into the infin8 namespace (which is created if it doesn't exist):
+helm install myapp ./myapp-chart -n infin8 --create-namespace
+
+# Run the minikube cluster
+minikube service django-service -n infin8
+```
 
 ## Usage
 Open your web browser and navigate to `localhost:8000` to access the login page.
